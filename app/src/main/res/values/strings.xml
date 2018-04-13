@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">GraduationApp</string>
+    <string name="app_name">汇率换算展示工具</string>
+    <string name="proto_cur">原始货币：</string>
+    <string name="target_cur">目标货币：</string>
+    <string name="exch_rate">兑换汇率：</string>
+    <string name="sea_rate">查询</string>
+    <string name="exch_num">兑换数额：</string>
+    <string name="spend_cost">花费成本：</string>
+    <string name="sea_rate1">查询汇率</string>
+    <string name="calculate_cost">计算成本</string>
+    <string name="menu_rate_exch">汇率换算</string>
+    <string name="menu_trend_line">汇率趋势</string>
 </resources>

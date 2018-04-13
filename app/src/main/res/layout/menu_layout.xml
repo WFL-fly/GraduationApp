@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_marginTopPercent="5%"
+    app:layout_marginBottomPercent="5%"
+    app:layout_marginStartPercent="5%"
+    app:layout_marginLeftPercent="5%"
+    app:layout_marginEndPercent="5%"
+    app:layout_marginRightPercent="5%"
+    tools:context="com.example.administrator.singleinstance.MainActivity"
+    >
+
+    <Button
+        android:id="@+id/exch_cur"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorButtonBackground"
+        android:gravity="center"
+        android:onClick="menu_exch_cur_onClick"
+        android:text="@string/menu_rate_exch"
+        android:textColor="@color/colorButtonText"
+        android:textSize="24sp"
+        android:typeface="sans"
+        app:layout_marginBottomPercent="2%"
+        app:layout_marginLeftPercent="2%"
+        app:layout_marginStartPercent="2%"
+        app:layout_marginTopPercent="2%"
+        app:layout_widthPercent="46%" />
+
+    <Button
+        android:id="@+id/trendline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_alignBottom="@+id/exch_cur"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/exch_cur"
+
+        android:layout_toEndOf="@+id/exch_cur"
+        android:layout_toRightOf="@+id/exch_cur"
+        android:background="@color/colorButtonBackground"
+        android:gravity="center"
+
+        android:onClick="menu_trendline_onClick"
+        android:text="@string/menu_trend_line"
+
+        android:textColor="@color/colorButtonText"
+        android:textSize="24sp"
+        android:typeface="sans"
+        app:layout_marginEndPercent="2%"
+        app:layout_marginLeftPercent="4%"
+        app:layout_marginRightPercent="2%"
+        app:layout_marginStartPercent="4%"
+        app:layout_widthPercent="46%" />
+</android.support.percent.PercentRelativeLayout>
