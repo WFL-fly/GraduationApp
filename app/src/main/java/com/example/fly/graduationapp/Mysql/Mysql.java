@@ -1,7 +1,7 @@
 package com.example.fly.graduationapp.Mysql;
 
 import com.example.fly.graduationapp.GetExceptionMsg;
-import com.example.fly.graduationapp.SQLite.SQLiteManager;
+import com.example.fly.graduationapp.network.NetworkConnectChangedReceiver;
 
 import org.apache.log4j.Logger;
 
@@ -23,9 +23,13 @@ public  class  Mysql {
     private static Statement  statement=null;
     public static boolean openConn()
     {
+        if(!NetworkConnectChangedReceiver.getNetworkState())
+        {
+            log.error("internet no connect,mysql cannot create connection");
+            return false;
+        }
         if(conn!=null)
         {
-            log.info("conn connected");
             return true;
         }
         try
@@ -50,7 +54,6 @@ public  class  Mysql {
             log.error("connect mysql failure"+"exception msg:"+ExceMsg);
             return false;
         }
-        log.info("connect mysql successful");
         return true;
     }
     public static boolean createUpdateStatement()
@@ -72,7 +75,6 @@ public  class  Mysql {
             log.error(" create statement interface falure"+ExceMsg);
             return false;
         }
-        log.info("create statement success");
         return true;
     }
 
@@ -92,7 +94,6 @@ public  class  Mysql {
             String ExceMsg=GetExceptionMsg.getExcpMsg(e);
             log.error("Statement interface falure"+ExceMsg);
         }
-        log.info("create statement success");
         return true;
     }
     public static ResultSet query(String sql){
@@ -134,7 +135,6 @@ public  class  Mysql {
                 return  false;
             }
         }
-        log.info("close statement successful");
         return  true;
     }
     public static boolean closeConn(){
@@ -153,8 +153,10 @@ public  class  Mysql {
                 return  false;
             }
         }
-        log.info("close mysql connection successful");
         return  true;
     }
-
+    public static Connection getConn()
+    {
+        return conn;
+    }
 }

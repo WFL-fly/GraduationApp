@@ -2,8 +2,10 @@ package com.example.fly.graduationapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Environment;
-
+import android.util.Log;
+import com.example.fly.graduationapp.network.NetworkConnectChangedReceiver;
 import com.example.fly.graduationapp.PublicMethod.PubMethod;
 
 import org.apache.log4j.Level;
@@ -17,18 +19,27 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
 //import org.apache.log4j.Level;
 public class MyApplication extends Application {
     private  static  Logger log=Logger.getLogger(MyApplication.class);
-    //private static Log log=LogFactory.getLog(MyApplication.class);
-    //private static Logger log = Logger.getLogger(MyApplication.class);
+   // private NetworkConnectChangedReceiver m_networkConnectChangedReceiver;
     private static Context appContext;
     @Override
     public void onCreate() {
         super.onCreate();
         appContext = getApplicationContext();
-        //启动子线程
         initLog4j();
         initTranslateMap();
+        registerNetworkStateListenReceiver();
+        //registerNetworkStateListenReceiver();
         //创建界面之前初始化Data还是创建界面之后
     }
+    private void registerNetworkStateListenReceiver()
+    {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        filter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        filter.addAction("android.net.wifi.STATE_CHANGE");
+        MyApplication.getAppContext().registerReceiver(new NetworkConnectChangedReceiver(),filter);
+    }
+
     private   void initLog4j()
     {
         String path=createLogFileAndPath("log4j.txt");
@@ -93,16 +104,16 @@ public class MyApplication extends Application {
     private void lo4jConfig(String path)
     {
         LogConfigurator logConfigurator=new LogConfigurator();
+        logConfigurator.setResetConfiguration(true);
         logConfigurator.setFileName(path);
         logConfigurator.setRootLevel(Level.DEBUG);
         logConfigurator.setLevel("org.apache",Level.DEBUG);
-        logConfigurator.setFilePattern("%d %-5p [%c{2}]-[%L] %m%n");
+        logConfigurator.setFilePattern("[%d{MM-dd HH:mm:ss}]-[%c{2}:%M:%L]-[%m]%n");
+        logConfigurator.setLogCatPattern("[%d{MM-dd HH:mm:ss}]-[%c{2}:%M:%L]-flylog4j-[%m]%n");
         logConfigurator.setMaxFileSize(1024 * 1024 * 5);
         logConfigurator.setImmediateFlush(true);
+        //logConfigurator.setUseLogCatAppender(false);
         logConfigurator.configure();
-        //Logger log = Logger.getLogger(MyApplication.class);
-        //log.info("My Application Created");
-        //log.info("log:log4j init success");
     }
 
     private boolean getExternalStorageState()

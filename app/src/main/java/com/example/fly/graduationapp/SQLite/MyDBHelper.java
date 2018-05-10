@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.mysql.jdbc.log.LogFactory;
+import com.example.fly.graduationapp.MyApplication;
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +13,23 @@ public class MyDBHelper extends SQLiteOpenHelper {
     private  static Logger log=Logger.getLogger(MyDBHelper.class);
     private static Context m_Context;
     private static String db_name="exchange_rate.db";
-    public MyDBHelper(Context context){
+    private static volatile MyDBHelper s_myDBHelper=null;
+    public static  MyDBHelper getInstance()
+    {
+        if (s_myDBHelper == null)
+        {
+            synchronized (MyDBHelper.class)
+            {
+                if (s_myDBHelper == null)
+                {
+                    s_myDBHelper=new MyDBHelper(MyApplication.getAppContext());
+                }
+            }
+        }
+        return s_myDBHelper;
+    }
+
+    private MyDBHelper(Context context){
            super(context,db_name,null,1);
            m_Context=context;
     }

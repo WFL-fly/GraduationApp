@@ -3,15 +3,19 @@ package com.example.fly.graduationapp.PublicMethod;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import com.example.fly.graduationapp.MyApplication;
-import com.example.fly.graduationapp.Data.Data;
+import android.os.Handler;
+import android.os.Message;
 
+import com.example.fly.graduationapp.CMD.UIMsg_CMD;
+import com.example.fly.graduationapp.Data.Data;
+import com.example.fly.graduationapp.MyApplication;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Map;
 
-/**
- * Created by wf on 2018/4/8.
- */
 
 public class PubMethod {
     public  static final  String zh_Arr[] =new String[]{"人民币","阿联酋迪拉姆","澳大利亚元","巴西里亚尔","加拿大元","瑞士法郎",
@@ -32,20 +36,17 @@ public class PubMethod {
         return false;
     }
     //判断网络连接是否正常
-    public static boolean isNetworkAvailable()
+
+    public static String getDateStr(Date date)
     {
-        ConnectivityManager connectivityManager=(ConnectivityManager) MyApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager==null)
-            return false;
-        NetworkInfo[] info=connectivityManager.getAllNetworkInfo();
-        if(info!=null&&info.length>0)
-        {
-            for(int i=0;i<info.length;i++)
-            {
-                if(info[i].getState()==NetworkInfo.State.CONNECTED)
-                    return true;
-            }
-        }
-        return false;
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return formatter.format(date);
+    }
+    public  static void  sendMsgToThread(Handler handler,int msgWhat,Object obj)
+    {
+        Message msg=Message.obtain();
+        msg.what = msgWhat;
+        msg.obj=obj;
+        handler.sendMessageDelayed(msg,5);
     }
 }

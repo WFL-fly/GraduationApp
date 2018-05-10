@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.fly.graduationapp.TrendLineActivity"
+    >
+    <include layout="@layout/trendline_top_landscape"
+        android:id="@+id/trendline_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        app:layout_heightPercent="8%"
+        />
+    <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/trendline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_heightPercent="92%"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/trendline_top"
+        app:layout_marginTopPercent="0.2%"
+        android:background="@color/colorTrendLineBackGround"
+        />
+</android.support.percent.PercentRelativeLayout>

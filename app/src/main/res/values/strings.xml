@@ -10,4 +10,8 @@
     <string name="calculate_cost">计算成本</string>
     <string name="menu_rate_exch">汇率换算</string>
     <string name="menu_trend_line">汇率趋势</string>
+    <string name="exchange_rate">汇率换算</string>
+    <string name="rate_trend">汇率趋势</string>
+    <string name="date_interval">时间段:</string>
+    <string name="trendline_update">确定</string>
 </resources>

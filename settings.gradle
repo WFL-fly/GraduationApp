@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':hellocharts-library2'
+project(':hellocharts-library2').projectDir = new File('hellocharts-library')

@@ -41,6 +41,10 @@ public class Manager {
                         rate=rec.excRate;
                     }
                 }
+                else
+                {
+                    log.error("Data.exchangeRate has no init ");
+                }
             }
             else
                 log.error("get Data.exchangeRate_lock.readLock() failure ");

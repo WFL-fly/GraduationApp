@@ -9,4 +9,6 @@
     <color name="colorTVBackground">#e7e4e4</color>
     <color name="colorSpiText">#0b0b0b</color>
     <color name="colorSpiBackground">#e7e4e4</color>
+    <color name="colorSpiItemTextColor">#283986</color>
+    <color name="colorTrendLineBackGround">#0a0a0a</color>
 </resources>
